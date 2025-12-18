@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_restful import Api
 from config import Config
 import models.models as models
@@ -11,6 +12,8 @@ def create_app():
 
     # initialize extensions
     models.db.init_app(app)
+
+    CORS(app, supports_credentials=True)  
 
     api = Api(app)
     routes.register_routes(api)
